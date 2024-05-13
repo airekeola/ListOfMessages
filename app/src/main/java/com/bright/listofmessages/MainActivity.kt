@@ -1,5 +1,6 @@
 package com.bright.listofmessages
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,6 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bright.listofmessages.ui.theme.ListOfMessagesTheme
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,26 +49,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Conversation(
-                        listOf(
-                            Message("author1", "The conversation is getting more interesting. It's time to play with animations! You will add the ability to expand a message to show a longer one, animating both the content size and the background color."),
-                            Message("author2", "Composable functions can store local state in memory by using remember, and track changes to the value passed to mutableStateOf. Composables (and their children) using this state will get redrawn automatically when the value is updated. "),
-                            Message("author3", "Android Compose revolutionizes the way developers create user interfaces for Android applications. With its declarative syntax, developers can describe UI components in a more intuitive and concise manner, focusing on what should be displayed rather than how it should be rendered. "),
-                            Message("author4", "By encapsulating mutable state within composable functions, Compose ensures that UI components automatically update when the underlying state changes, eliminating the need for manual synchronization and reducing the risk of bugs. "),
-                            Message("author5", "The conversation is getting more interesting. It's time to play with animations! You will add the ability to expand a message to show a longer one, animating both the content size and the background color."),
-                            Message("author6", "Composable functions can store local state in memory by using remember, and track changes to the value passed to mutableStateOf. Composables (and their children) using this state will get redrawn automatically when the value is updated. "),
-                            Message("author7", "Android Compose revolutionizes the way developers create user interfaces for Android applications. With its declarative syntax, developers can describe UI components in a more intuitive and concise manner, focusing on what should be displayed rather than how it should be rendered. "),
-                            Message("author8", "By encapsulating mutable state within composable functions, Compose ensures that UI components automatically update when the underlying state changes, eliminating the need for manual synchronization and reducing the risk of bugs. "),
-                            Message("author9", "The conversation is getting more interesting. It's time to play with animations! You will add the ability to expand a message to show a longer one, animating both the content size and the background color."),
-                            Message("author10", "Composable functions can store local state in memory by using remember, and track changes to the value passed to mutableStateOf. Composables (and their children) using this state will get redrawn automatically when the value is updated. "),
-                            Message("author11", "Android Compose revolutionizes the way developers create user interfaces for Android applications. With its declarative syntax, developers can describe UI components in a more intuitive and concise manner, focusing on what should be displayed rather than how it should be rendered. "),
-                            Message("author12", "By encapsulating mutable state within composable functions, Compose ensures that UI components automatically update when the underlying state changes, eliminating the need for manual synchronization and reducing the risk of bugs. "),
-                            Message("author13", "The conversation is getting more interesting. It's time to play with animations! You will add the ability to expand a message to show a longer one, animating both the content size and the background color."),
-                            Message("author14", "Composable functions can store local state in memory by using remember, and track changes to the value passed to mutableStateOf. Composables (and their children) using this state will get redrawn automatically when the value is updated. "),
-                            Message("author15", "Android Compose revolutionizes the way developers create user interfaces for Android applications. With its declarative syntax, developers can describe UI components in a more intuitive and concise manner, focusing on what should be displayed rather than how it should be rendered. "),
-                            Message("author16", "By encapsulating mutable state within composable functions, Compose ensures that UI components automatically update when the underlying state changes, eliminating the need for manual synchronization and reducing the risk of bugs. ")
-                        )
-                    )
+                    val programs = getProgramsFromJson(this)
+                    Conversation(programs)
                 }
             }
         }
@@ -69,17 +58,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Conversation(messages: List<Message>) {
+fun Conversation(programs: List<Program>) {
     LazyColumn {
-        items(messages) {message -> MessageCard(message)}
+        items(programs) {message -> ProgramCard(message)}
     }
 }
 
 @Composable
-fun MessageCard(message: Message) {
+fun ProgramCard(message: Program) {
+    Spacer(modifier = Modifier.height(10.dp))
     Row {
         Image(
-            painter = painterResource(id = R.drawable.person),
+            painter = painterResource(id = R.drawable.miu),
             contentDescription = "person",
             modifier = Modifier
                 .clip(CircleShape)
@@ -95,18 +85,20 @@ fun MessageCard(message: Message) {
             modifier = Modifier.clickable { isExpanded = !isExpanded }
         ) {
             Text(
-                text = message.author,
+                text = message.programName,
                 color = MaterialTheme.colorScheme.secondary,
-                style = MaterialTheme.typography.titleSmall
+                style = MaterialTheme.typography.titleLarge,
+
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = message.body,
+                text = message.description,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = if(isExpanded) Int.MAX_VALUE else 1
             )
         }
     }
+    Spacer(modifier = Modifier.height(15.dp))
 }
 
 @Preview(showBackground = true)
@@ -117,19 +109,25 @@ fun ConversationPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Conversation(
-                listOf(
-                    Message("author1", "The conversation is getting more interesting. It's time to play with animations! You will add the ability to expand a message to show a longer one, animating both the content size and the background color."),
-                    Message("author2", "Composable functions can store local state in memory by using remember, and track changes to the value passed to mutableStateOf. Composables (and their children) using this state will get redrawn automatically when the value is updated. "),
-                    Message("author3", "Android Compose revolutionizes the way developers create user interfaces for Android applications. With its declarative syntax, developers can describe UI components in a more intuitive and concise manner, focusing on what should be displayed rather than how it should be rendered. "),
-                    Message("author4", "By encapsulating mutable state within composable functions, Compose ensures that UI components automatically update when the underlying state changes, eliminating the need for manual synchronization and reducing the risk of bugs. ")
-                )
+            listOf(
+                Program(
+                    "Bachelor of Applied Arts & Sciences",
+                    "The conversation is getting more interesting. It's time to play with animations! You will add the ability to expand a message to show a longer one, animating both the content size and the background color."
+                ),
             )
         }
     }
 }
 
-data class Message(
-    val author: String,
-    val body: String
+fun getProgramsFromJson(context: Context): List<Program> {
+    val inputStream = context.resources.openRawResource(R.raw.programs)
+    val reader = BufferedReader(InputStreamReader(inputStream))
+    val json = reader.use { it.readText() }
+    return Json { ignoreUnknownKeys = true }.decodeFromString<List<Program>>(json)
+}
+
+@Serializable
+data class Program(
+    val programName: String,
+    val description: String
 )

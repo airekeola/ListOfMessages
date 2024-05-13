@@ -1,0 +1,62 @@
+[
+  {
+    "programName": "Bachelor of Applied Arts & Sciences",
+    "description": "This program provides a broad education that can be customized to suit your interests and career goals. It allows you to explore a wide range of subjects while developing practical skills and knowledge, with the option to study either online or on-campus."
+  },
+  {
+    "programName": "BA in Art, Consciousness & Creative Practice",
+    "description": "Combining rigorous art practice with the study of consciousness, this on-campus program encourages creative exploration and personal growth. Students develop their artistic skills while gaining a deeper understanding of the creative process."
+  },
+  {
+    "programName": "MS in Maharishi AyurVeda & Integrative Medicine",
+    "description": "Focused on the principles of Maharishi AyurVeda, this online program is designed for health professionals seeking to integrate holistic health practices into their work. Students learn about natural approaches to health and wellness, and how to apply these methods in clinical settings."
+  },
+  {
+    "programName": "MBA for Professionals",
+    "description": "This on-campus MBA program offers specializations in ERP/SAP and accounting, designed for professionals looking to advance their careers. The curriculum combines advanced business theory with practical application, preparing students for leadership roles in their organizations."
+  },
+  {
+    "programName": "BA in Cinematic Arts & New Media",
+    "description": "Available both online and on-campus, this program trains students in the production of film and new media. The curriculum covers a wide range of topics including storytelling, digital media, and film production techniques, preparing graduates for careers in the media industry."
+  },
+  {
+    "programName": "MS in Computer Science",
+    "description": "A comprehensive program that provides advanced education in computer science, covering topics such as software development, data science, and artificial intelligence. The on-campus program is designed to equip students with the skills needed to excel in the tech industry."
+  },
+  {
+    "programName": "PhD in Maharishi Vedic Science",
+    "description": "This doctoral program delves into the ancient wisdom of Maharishi Vedic Science, exploring its applications in modern life. The on-campus curriculum includes in-depth study and research, aiming to deepen students' understanding of consciousness and its development."
+  },
+  {
+    "programName": "BA in Regenerative Organic Agriculture",
+    "description": "Focusing on sustainable and regenerative farming practices, this program is available both online and on-campus. Students learn about organic farming, soil health, and sustainable agriculture techniques, preparing them to contribute to the future of farming."
+  },
+  {
+    "programName": "MA in Leadership & Workplace Conflict Resolution",
+    "description": "An online program designed to develop effective leadership skills and strategies for resolving workplace conflicts. The curriculum includes courses on communication, negotiation, and organizational behavior, helping graduates to become proficient leaders and mediators."
+  },
+  {
+    "programName": "BS in Mathematics",
+    "description": "Providing a solid foundation in mathematical theories and applications, this on-campus program prepares students for careers in science, engineering, and technology. The curriculum covers a wide range of mathematical topics, fostering analytical and problem-solving skills."
+  },
+  {
+    "programName": "BA in Business Administration",
+    "description": "This program offers a comprehensive education in business principles, including management, marketing, and finance. Available both online and on-campus, it prepares students for a wide range of careers in the business world."
+  },
+  {
+    "programName": "BA in Sustainable & Regenerative Living",
+    "description": "An on-campus program focused on sustainability and regenerative practices. Students learn about eco-friendly living, sustainable design, and renewable energy, preparing them to make a positive impact on the environment."
+  },
+  {
+    "programName": "BA in Literature",
+    "description": "This on-campus program offers an in-depth study of literature, including analysis, criticism, and creative writing. Students explore a wide range of literary works and develop their skills in writing and critical thinking."
+  },
+  {
+    "programName": "BA in Consciousness & Human Potential",
+    "description": "Focused on the study of consciousness and human development, this on-campus program explores how consciousness can be developed and harnessed to enhance human potential. The curriculum includes courses in psychology, philosophy, and personal development."
+  },
+  {
+    "programName": "MFA in Screenwriting",
+    "description": "An online program designed for aspiring screenwriters, offering comprehensive training in the art and craft of writing for film and television. The curriculum includes courses in storytelling, script analysis, and writing techniques."
+  }
+]
